@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 60px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            animation: floatText 4s ease-in-out infinite alternate;
+            position: absolute;
+            top: 40%;
+        }
+
+        @keyframes floatText {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ff4d6d;
+            transform: rotate(-45deg);
+            animation: floatHearts 5s linear infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ff4d6d;
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -7.5px; left: 0; }
+        .heart::after { left: 7.5px; top: 0; }
+
+        @keyframes floatHearts {
+            0% { opacity: 1; transform: translateY(0) rotate(-45deg) scale(1); }
+            100% { opacity: 0; transform: translateY(-100vh) rotate(-45deg) scale(1.5); }
+        }
+
+        /* Fireworks */
+        .firework {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            opacity: 1;
+            animation: explode 1.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        /* Balloons */
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 55px;
+            border-radius: 50%;
+            background: red;
+            box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.2);
+            animation: floatBalloons 8s linear infinite;
+        }
+
+        .balloon::before {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background: black;
+            transform: translateX(-50%);
+        }
+
+        @keyframes floatBalloons {
+            0% { transform: translateY(100vh) translateX(0); opacity: 1; }
+            100% { transform: translateY(-150vh) translateX(10px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday bbg u fucking nigger 🎂❤️</h1>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+            
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        setInterval(createHeart, 400);
+
+        function createFirework() {
+            for (let i = 0; i < 3; i++) {
+                const fireworkContainer = document.createElement("div");
+                fireworkContainer.style.position = "absolute";
+                fireworkContainer.style.left = Math.random() * 100 + "vw";
+                fireworkContainer.style.top = Math.random() * 50 + 30 + "vh";
+
+                for (let j = 0; j < 25; j++) {
+                    let firework = document.createElement("div");
+                    firework.classList.add("firework");
+                    firework.style.backgroundColor = ["#ffcc00", "#ff6699", "#66ccff", "#99ff99"][Math.floor(Math.random() * 4)];
+                    firework.style.left = `${Math.random() * 50 - 25}px`;
+                    firework.style.top = `${Math.random() * 50 - 25}px`;
+                    firework.style.animationDuration = "1.5s";
+
+                    fireworkContainer.appendChild(firework);
+                }
+
+                document.body.appendChild(fireworkContainer);
+
+                setTimeout(() => { fireworkContainer.remove(); }, 1500);
+            }
+        }
+
+        setInterval(createFirework, 1000);
+
+        function createBalloon() {
+            const balloon = document.createElement("div");
+            balloon.classList.add("balloon");
+
+            const colors = ["#FF5F5F", "#FF914D", "#FFD700", "#66CCFF", "#99FF99"];
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.left = Math.random() * 90 + "vw";
+            balloon.style.animationDuration = Math.random() * 4 + 5 + "s";
+
+            document.body.appendChild(balloon);
+
+            setTimeout(() => { balloon.remove(); }, 8000);
+        }
+
+        setInterval(createBalloon, 700);
+    </script>
+</body>
+</html>
